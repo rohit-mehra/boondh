@@ -1,10 +1,11 @@
 import time
 from contextlib import contextmanager
 from datetime import datetime
+from typing import Iterator
 
 # Simplest - generator-iterator based
 @contextmanager
-def timer(code_block_name: str) -> None:
+def timer(code_block_name: str) -> Iterator[None]:
     """Prints the time taken to execute a given code block.
 
     Args:
@@ -27,8 +28,8 @@ def timer(code_block_name: str) -> None:
 # Return Start Date and time
 # just to show the use of `as` assignment in the `with` statement
 @contextmanager
-def timer_v2(code_block_name: str) -> None:
-    """[summary]
+def timer_v2(code_block_name: str) -> Iterator[datetime]:
+    """Prints the time taken to execute a given code block.
 
     Args:
         code_block_name (str): Description of your codeblock

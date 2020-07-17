@@ -38,10 +38,10 @@ def mp_func(func, data_arg_name_in_func: str, data: Iterable, *args, **kwargs):
     
 
     func_args = getfullargspec(func).args
-    total = len(data)
-    
+
     # Sanity checks
     assert isinstance(data, Iterable), "data should be an iterable.."
+    total = len(data)
     assert data_arg_name_in_func in func_args, f"{data_arg_name_in_func} is not an argument of {func.__name__} function that you provided.."
     assert total > 1, f"len(data) should be > 1, but is {len(data)}"
     assert len(args) + len(kwargs) + 1 == len(func_args), f"{len(args)} + {len(kwargs)} + 1 != {len(func_args)}\nCheck args func_args are {func_args}"
