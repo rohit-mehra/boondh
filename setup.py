@@ -27,6 +27,8 @@ setup(
         'packaging',
         # progress bars
         'tqdm >= 4.27',
+        # data ops
+        'pandas',
     ],
     python_requires='>=3.6.0',
     
