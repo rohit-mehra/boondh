@@ -12,6 +12,8 @@ pip install .
 ```
 
 # sample use
+
+> Parallelize any function
 ```python
 from boondh import mp_func
 
@@ -21,4 +23,17 @@ def base_func(value, sq=True):
 
 data = [0, 1, 2, 3, 4]
 results = mp_func(base_func, 'value', data, sq=True)
+```
+
+> Arrange files in your directory (usually the `Download` directory.. :smile:)
+
+- This will scan the directory and create `type folders` like `csv_`, `txt_` etc.
+- Move respective filetypes into these folders.
+
+```bash
+echo pwd | python -m boondh.utils.arrange_files -D
+```
+OR
+```bash
+python -m boondh.utils.arrange_files -D /Users/<myusername>/Downloads/
 ```
