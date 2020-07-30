@@ -20,20 +20,31 @@ class ManageDir:
             file_path (str): file path e.g. abc/xyz.csv or xyz.csv
         """
         dir = dirname(file_path)
-        assert dir == "" or isdir(dir), f"{dirname} directory doesn't exist.."
+        assert dir == "" or isdir(dir), f"{dir} directory doesn't exist.."
         assert isfile(
             file_path
         ), f"{file_path} is invalid. \nContents of {dir} are {[f for f in listdir(dir)]}"
 
     @staticmethod
-    def assert_dir_exists(file_path: str) -> None:
-        """Assert directory of a file_path exists
+    def assert_parent_dir_exists(file_path: str) -> None:
+        """Assert parent directory of a file_path exists
 
         Args:
             file_path (str): file path e.g. abc/xyz.csv or xyz.csv
         """
         dir = dirname(file_path)
-        assert dir == "" or isdir(dir), f"{dirname} directory doesn't exist.."
+        assert dir == "" or isdir(dir), f"{dir} directory doesn't exist.."
+
+    @staticmethod
+    def assert_dir_exists(dir_path: str) -> None:
+        """Assert directory exists
+
+        Args:
+            dir_path (str): dir path e.g. abc/ or abc/xyz/
+        """
+        dir = dirname(dir_path)
+        assert dir == "" or isdir(dir), f"{dir} directory doesn't exist.."
+        assert isdir(dir_path), f"{dir_path} directory doesn't exist.."
 
     @classmethod
     def list_empty_sub_dirs(cls, dir_path: str) -> List[str]:
@@ -179,10 +190,10 @@ if __name__ == "__main__":
     )
 
     # example args
-    args = parser.parse_args("-D /Users/rohitmehra/Downloads/test_dir".split())
+    # args = parser.parse_args("-D /Users/userx/Downloads".split())
 
     # args from cli
-    # args = parser.parse_args()
+    args = parser.parse_args()
 
     path = args.dir[0]
     # print(f"Empty in {path}: {ManageDir.list_empty_sub_dirs(path)}")
