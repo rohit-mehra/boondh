@@ -1,9 +1,27 @@
-from pandas import DataFrame
+from pandas import DataFrame, Series
+from numpy import nan
 from string import ascii_uppercase
 from random import randint
 
 
-def df_filter_values_above_freq(df: DataFrame, column_name: str, freq: int) -> DataFrame:
+def series_most_freq(series: Series) -> object:
+    """Returns most feq value in the series. Good as agg function.
+
+    Args:
+        series (Series): Pandas series
+
+    Returns:
+        object: Either the series value or numpy.nan
+    """
+    series = series.dropna().values.tolist()
+    if series:
+        return max(series, key=series.count)
+    return nan
+
+
+def df_filter_values_above_freq(
+    df: DataFrame, column_name: str, freq: int
+) -> DataFrame:
     """Filters data frame on a column's value counts.
 
     Args:
@@ -49,3 +67,4 @@ def assert_column_in_dataframe(column_name: str, df: DataFrame):
 if __name__ == "__main__":
     df = df_get_dummy()
     print(df_filter_values_above_freq(df, "category", 5))
+    print(series_most_freq(Series([1,2,3,4,1,2,3,2,3,2])))
