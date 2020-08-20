@@ -5,13 +5,14 @@ from inspect import getfullargspec
 from multiprocessing import Pool, cpu_count
 from functools import partial
 from typing import Iterable, Union
+import logging
 
 
 def mp_func(
     func,
     data_arg_name_in_func: str,
     data: Iterable,
-    chunksize: Union[str, int] = 'auto',
+    chunksize: Union[str, int] = "auto",
     *args,
     **kwargs,
 ):
@@ -21,7 +22,7 @@ def mp_func(
         func: the python function to be applied
         data_arg_name_in_func (str): argument name in `func` which requires data point from data iterable
         data (Iterable): iterable with data points
-        chunksize (str, int): auto for automatic calc, int for specific chunksize
+        chunksize (str, int): 'auto' or None for automatic calc, int for specific chunksize
         args: positional args which will be supplied to the given `func`
         kwargs: keyword args which will be supplied to the given `func`
 
@@ -70,8 +71,15 @@ def mp_func(
     try:
         # sanity check
         _ = _new_func(**{data_arg_name_in_func: data[-1]})
+
+        if not chunksize or isinstance(chunksize, str):
+            if chunksize == "auto":
+                chunksize = int(sqrt(total) * cpus / 2)
+            else:
+                logging.warning(f"chunksize can't be {chunksize} use 'auto' or any int value..using auto..")
+                chunksize = int(sqrt(total) * cpus / 2)
+                
         # actual processing
-        chunksize = int(sqrt(total) * cpus / 2) if chunksize == 'auto' else chunksize
         with Pool(cpus) as pool:
             results = list(
                 tqdm(pool.imap(_new_func, data, chunksize=chunksize), total=total)
