@@ -31,7 +31,7 @@ results = mp_func(base_func, 'value', data, sq=True)
 - Move respective filetypes into these folders.
 
 ```bash
-echo pwd | python -m boondh.utils.arrange_files -D
+python -m boondh.utils.arrange_files -D "$(pwd)"
 ```
 OR
 ```bash
