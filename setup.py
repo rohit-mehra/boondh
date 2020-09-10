@@ -9,13 +9,13 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="boondh",
-    version="0.1",
+    version="0.1.1",
     description="A Swiss Knife",
     long_description=long_description,
     long_description_content_type="text/markdown",
     keywords=["utility", "data", "multiprocessing", "cli", "tools"],
     url="https://github.com/rohit-mehra/boondh",
-    download_url = 'https://github.com/rohit-mehra/boondh/archive/01.tar.gz',
+    download_url="https://github.com/rohit-mehra/boondh/archive/v_0_1_1.tar.gz",
     author="Rohit Mehra",
     author_email="iirohitmehra@gmail.com",
     package_dir={"": "src"},
@@ -40,7 +40,7 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
-        "Topic :: Software Development :: Data Tools",
+        "Topic :: Software Development",
     ],
 )
 
