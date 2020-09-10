@@ -6,7 +6,7 @@ from multiprocessing import Pool, cpu_count
 from functools import partial
 from typing import Iterable, Union
 import logging
-
+log = logging.getLogger(__name__)
 
 def mp_func(
     func,
@@ -61,7 +61,7 @@ def mp_func(
 
     # for better user experience
     cpus = cpu_count()
-    print(f"CPUS: {cpus}")
+    log.info(f"CPUS: {cpus}")
 
     # Returns a new partial object which when called will behave
     # like func called with the positional arguments args and keyword arguments kwargs.
@@ -78,6 +78,7 @@ def mp_func(
             else:
                 logging.warning(f"chunksize can't be {chunksize} use 'auto' or any int value..using auto..")
                 chunksize = int(sqrt(total) * cpus / 2)
+        log.info(f"chunksize: {chunksize}")
                 
         # actual processing
         with Pool(cpus) as pool:
@@ -85,19 +86,22 @@ def mp_func(
                 tqdm(pool.imap(_new_func, data, chunksize=chunksize), total=total)
             )
     except TypeError:
-        print(
+        log.info(
             f"Please make sure that args and kwargs provided are valid for {func.__name__} function.."
         )
-        print(format_exc())
+        log.exception(format_exc())
     except Exception:
-        print(format_exc())
+        log.exception(format_exc())
     finally:
-        print("Done..")
+        log.info("Done..")
 
     return results
 
 
 if __name__ == "__main__":
+    logging.basicConfig()
+    log.setLevel(logging.DEBUG)
+    log.info("Starting mp_func on 100_000_000 sample points..")
     # Sample Usage
     # function to be applied
     def base_func(value, sq=True):
@@ -105,5 +109,5 @@ if __name__ == "__main__":
             return value ** 2
         return value
 
-    results = mp_func(base_func, "value", range(0, 100_000_000), sq=True)
+    results = mp_func(base_func, "value", data=range(0, 100_000_000), chunksize=200, sq=True)
     print(results[33])
