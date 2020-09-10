@@ -4,44 +4,44 @@ import pathlib
 here = pathlib.Path(__file__).parent.resolve()
 
 # Get the long description from the README file
-long_description = (here / 'README.md').read_text(encoding='utf-8')
+long_description = (here / "README.md").read_text(encoding="utf-8")
 
 
 setup(
-    name='boondh', 
-    version='0.1',
-    description='A personal library',
+    name="boondh",
+    version="0.1",
+    description="A Swiss Knife",
     long_description=long_description,
-    long_description_content_type='text/markdown',
-    keywords='utils data learning',
-    url='https://github.com/rohit-mehra/boondh',
-    author='Rohit Mehra',
-    author_email='iirohitmehra@gmail.com',
-    package_dir={'': 'src'},
-    packages=find_packages('src'),
+    long_description_content_type="text/markdown",
+    keywords=["utility", "data", "multiprocessing", "cli", "tools"],
+    url="https://github.com/rohit-mehra/boondh",
+    download_url = 'https://github.com/rohit-mehra/boondh/archive/01.tar.gz',
+    author="Rohit Mehra",
+    author_email="iirohitmehra@gmail.com",
+    package_dir={"": "src"},
+    packages=find_packages("src"),
     install_requires=[
-        'numpy',
+        "numpy",
         # dataclasses for Python versions that don't have it
         'dataclasses;python_version<"3.7"',
         # utilities from PyPA to e.g. compare versions
-        'packaging',
+        "packaging",
         # progress bars
-        'tqdm >= 4.27',
+        "tqdm >= 4.27",
         # data ops
-        'pandas',
+        "pandas",
     ],
-    python_requires='>=3.6.0',
-    
+    python_requires=">=3.6.0",
     classifiers=[
-        'Development Status :: 3 - Alpha',
-        'Intended Audience :: Developers',
-        'Intended Audience :: Utils',
-        'License :: OSI Approved :: MIT License',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'Topic :: Software Development :: Data and Utility',
+        "Development Status :: 3 - Alpha",
+        "Intended Audience :: Developers",
+        "Intended Audience :: Utils",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Topic :: Software Development :: Data and Utility",
     ],
+)
 
-    )
