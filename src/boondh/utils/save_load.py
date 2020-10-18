@@ -1,7 +1,7 @@
 import pickle
 import json
 from os.path import isdir, isfile, dirname
-from posix import listdir
+from os import listdir
 from typing import Dict, Hashable
 
 
