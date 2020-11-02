@@ -9,7 +9,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="boondh",
-    version="0.1.2",
+    version="0.1.4",
     description="A Swiss Knife",
     long_description=long_description,
     long_description_content_type="text/markdown",
