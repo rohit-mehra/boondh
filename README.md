@@ -6,6 +6,12 @@ A Personal Library
 
 # install
 ```bash
+pip3 install -U boondh
+```
+
+For nightly
+
+```bash
 git clone https://github.com/rohit-mehra/boondh.git
 cd boondh
 pip install .
