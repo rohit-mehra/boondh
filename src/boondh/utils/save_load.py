@@ -33,7 +33,7 @@ def save_pickle(obj: object, pickle_path: str) -> None:
         pickle.dump(obj, pf, protocol=4)
 
 
-def load_json(json_path: str, key_is_int: bool = False) -> Dict[Hashable, object]:
+def load_json(json_path: str, key_is_int: bool = False) -> Union[Dict[Hashable, Any], List[Any]]:
     """Avoid boilerplate json loading.
 
     Args:
