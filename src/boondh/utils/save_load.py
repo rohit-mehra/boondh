@@ -2,7 +2,7 @@ import pickle
 import json
 from os.path import isdir, isfile, dirname
 from os import listdir
-from typing import Dict, Hashable
+from typing import Dict, Hashable, Any, List, Union
 
 
 def load_pickle(pickle_path: str) -> object:
@@ -52,7 +52,7 @@ def load_json(json_path: str, key_is_int: bool = False) -> Dict[Hashable, object
         return json.load(jf)
 
 
-def save_json(obj: Dict[Hashable, object], json_path: str) -> None:
+def save_json(obj: Union[Dict[Hashable, Any], List[Any]], json_path: str) -> None:
     """Save python dict to json_path
 
     Args:
