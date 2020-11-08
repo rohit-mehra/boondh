@@ -68,8 +68,8 @@ def mp_func(
     ), f"{data_arg_name_in_func} is not an argument of {func.__name__} function that you provided.."
     assert total > 1, f"len(data) should be > 1, but is {total}"
     assert len(args) + len(kwargs) + 1 == len(
-        func_args
-    ), f"{len(args)} + {len(kwargs)} + 1 != {len(func_args)}\nCheck args func_args are {func_args}"
+        func_args) or (len(args) + len(kwargs) + 2 == len(
+            func_args) and "self" in func_args), f"{len(args)} + {len(kwargs)} + 1 != {len(func_args)}\nCheck args func_args are {func_args}"
 
     # for better user experience
     cpus = cpu_count()
@@ -99,11 +99,12 @@ def mp_func(
             if ordered:
                 results = list(
                     tqdm(pool.imap(_new_func, data,
-                                             chunksize=chunksize), total=total)
+                                   chunksize=chunksize), total=total)
                 )
             else:
                 results = list(
-                    tqdm(pool.imap_unordered(_new_func, data, chunksize=chunksize), total=total)
+                    tqdm(pool.imap_unordered(_new_func, data,
+                                             chunksize=chunksize), total=total)
                 )
     except TypeError:
         log.info(
