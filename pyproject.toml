@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "boondh"
+version = "0.1.6"
+description = "A Swiss Knife"
+keywords = ["utility", "data", "multiprocessing", "cli", "tools"]
+authors = ["Rohit Mehra <iirohitmehra@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "src/boondh" }]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development",
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = "^1.24.1"
+pandas = "^1.5.3"
+tqdm = "^4.64.1"
+packaging = "^23.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
